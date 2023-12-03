@@ -3,6 +3,9 @@ import Card from 'react-bootstrap/Card';
 import banner from './banner.png'
 import Products from './Products';
 
+
+//test 1
+
 const Home = () => {
     return (
         <div className='home-banner'>
