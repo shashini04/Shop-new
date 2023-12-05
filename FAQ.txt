@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retail Store FAQ</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your CSS file -->
+</head>
+<body>
+
+<div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item">
+        <h2>Question 1: What are your shipping options?</h2>
+        <p>Answer: We offer standard and express shipping options. Standard shipping takes 5-7 business days, while express shipping delivers within 2-3 business days.</p>
+    </div>
+
+    <div class="faq-item">
+        <h2>Question 2: How can I return an item?</h2>
+        <p>Answer: You can initiate a return through your account dashboard or contact our customer support for assistance.</p>
+    </div>
+
+    <!-- Add more FAQ items as needed -->
+</div>
+
+</body>
+</html>
