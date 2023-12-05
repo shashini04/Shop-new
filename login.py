@@ -88,3 +88,84 @@ while True:
         break
     else:
         print("Invalid choice. Please enter 1, 2, 3, or 4.\n")
+
+    # Add to carn & register button #
+
+    import tkinter as tk
+from tkinter import messagebox
+
+# Dictionary to store usernames and passwords
+users = {}
+
+# Dictionary to store shopping carts
+shopping_carts = {}
+
+def register():
+    # Function to register a new user
+    username = entry_username.get()
+    password = entry_password.get()
+
+    if username and password:
+        users[username] = password
+        messagebox.showinfo("Registration", "Registration successful!")
+    else:
+        messagebox.showerror("Error", "Please enter both username and password.")
+
+def login():
+    # Function to check login credentials
+    username = entry_username.get()
+    password = entry_password.get()
+
+    if username in users and users[username] == password:
+        messagebox.showinfo("Login", "Login successful!")
+        return username
+    else:
+        messagebox.showerror("Error", "Login failed. Invalid username or password.")
+        return None
+
+def add_to_cart(username):
+    # Function to add an item to the shopping cart
+    item_to_add = entry_item.get()
+    if username in shopping_carts:
+        shopping_carts[username].append(item_to_add)
+    else:
+        shopping_carts[username] = [item_to_add]
+    
+    messagebox.showinfo("Add to Cart", f"{item_to_add} added to the cart.")
+
+# Create the main window
+root = tk.Tk()
+root.title("Shopping App")
+
+# Username and Password Entry
+label_username = tk.Label(root, text="Username:")
+label_username.pack()
+entry_username = tk.Entry(root)
+entry_username.pack()
+
+label_password = tk.Label(root, text="Password:")
+label_password.pack()
+entry_password = tk.Entry(root, show="*")  # Show * for password
+entry_password.pack()
+
+# Login Button
+button_login = tk.Button(root, text="Login", command=login)
+button_login.pack()
+
+# Item Entry for Add to Cart
+label_item = tk.Label(root, text="Item:")
+label_item.pack()
+entry_item = tk.Entry(root)
+entry_item.pack()
+
+# Add to Cart Button
+button_add_to_cart = tk.Button(root, text="Add to Cart", command=lambda: add_to_cart(username))
+button_add_to_cart.pack()
+
+# Register Button
+button_register = tk.Button(root, text="Register", command=register)
+button_register.pack()
+
+# Run the GUI
+root.mainloop()
+
