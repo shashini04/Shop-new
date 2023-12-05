@@ -1,0 +1,25 @@
+/* Basic styles for FAQ section */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+p {
+    margin-top: 5px;
+    line-height: 1.5;
+}
