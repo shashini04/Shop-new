@@ -1,0 +1,37 @@
+npm install memory-cache
+
+const express = require('express');
+const cache = require('memory-cache');
+const app = express();
+
+// Middleware for caching
+const cacheMiddleware = (req, res, next) => {
+    const key = '__express__' + req.originalUrl || req.url;
+    const cachedBody = cache.get(key);
+    if (cachedBody) {
+        res.send(cachedBody);
+        return;
+    } else {
+        res.sendResponse = res.send;
+        res.send = (body) => {
+            cache.put(key, body, YOUR_CACHE_EXPIRATION_TIME_IN_MILLISECONDS); // Set expiration time
+            res.sendResponse(body);
+        };
+        next();
+    }
+};
+
+// Route that needs caching (example: product catalog endpoint)
+app.get('/api/products', cacheMiddleware, (req, res) => {
+    // Fetch and process products data
+    const products = fetchProductsFromDatabase(); // Replace this with actual data retrieval logic
+    res.json(products);
+});
+
+// Other routes and middleware...
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+

@@ -1,0 +1,29 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# Sample list of items with prices
+cart_items = [
+    {'name': 'Product 1', 'price': 10},
+    {'name': 'Product 2', 'price': 20},
+    {'name': 'Product 3', 'price': 30}
+]
+
+@app.route('/')
+def index():
+    return render_template('index.html', cart_items=cart_items)
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    item_name = request.form.get('item_name')
+    item_price = float(request.form.get('item_price'))
+    cart_items.append({'name': item_name, 'price': item_price})
+    return render_template('index.html', cart_items=cart_items)
+
+@app.route('/cart')
+def view_cart():
+    total_price = sum(item['price'] for item in cart_items)
+    return render_template('cart.html', cart_items=cart_items, total_price=total_price)
+
+if __name__ == '__main__':
+    app.run(debug=True)
